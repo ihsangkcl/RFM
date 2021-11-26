@@ -108,8 +108,8 @@ class DFFD_erased(selfdataset):
     def __init__(self, folder_path="./FakeImgDatasets/"):
         super(selfdataset, self).__init__()
         self.folder_path = folder_path
-        self.R_dir = ["youtube", "ffhq", "celeba_2w"]
-        self.F_dir = ["stylegan_celeba", "stylegan_ffhq", "faceapp", "stargan", "pggan_v1", "pggan_v2", "Deepfakes", "FaceSwap", "Face2Face"]
+        self.R_dir = ["ffhq"]
+        self.F_dir = ["stylegan_ffhq"]
         self.trainpath = lambda path, file: os.path.join(self.folder_path, file, "train")
         self.validpath = lambda path, file: os.path.join(self.folder_path, file, "validation")
         self.testpath = lambda path, file: os.path.join(self.folder_path, file, "test")
