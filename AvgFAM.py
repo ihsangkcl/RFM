@@ -9,7 +9,7 @@ import cv2
 import utils.datasets_profiles as dp
 
 modelname = "xception"
-resume_model = ""
+resume_model = "./models/xbase_xception_model_batch_12000"
 
 aug = torchvision.transforms.Compose([
     torchvision.transforms.Resize(256),
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     cuda_device = "cuda:0"
     torch.cuda.set_device(cuda_device)
 
-    model = eval(modelname)(num_classes=2).cuda()
+    model = eval(modelname)(num_classes=2,pretrained=False).cuda()
 
     model.load_state_dict(torch.load(resume_model, map_location={'cuda:0': cuda_device, 'cuda:1': cuda_device, 'cuda:2': cuda_device, 'cuda:3': cuda_device}))
 
@@ -117,4 +117,4 @@ if __name__ == "__main__":
             plt.xticks(())
             plt.yticks(())
             plt.title(x)
-        plt.savefig("../"+str(i)+".png")
+        plt.savefig("./avg_FAM_results/"+str(i)+".png")
