@@ -100,8 +100,10 @@ if __name__ == "__main__":
 
     lossfunc = torch.nn.CrossEntropyLoss()
 
-    dataset = dp.DFFD()
+    dataset = dp.CelebDF()
 
+    
+    
     trainsetR = dataset.getTrainsetR()
     trainsetF = dataset.getTrainsetF()
 
