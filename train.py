@@ -73,9 +73,9 @@ def Eval(model, lossfunc, dtloader):
 
 def Log(log):
     print(log)
-    f = open("./logs/"+upper+"_"+modelname+".log", "a")
-    f.write(log+"\n")
-    f.close()
+    #f = open("./logs/"+upper+"_"+modelname+".log", "a")
+    #f.write(log+"\n")
+    #f.close()
 
 
 if __name__ == "__main__":
