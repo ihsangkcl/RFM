@@ -85,6 +85,7 @@ def cal_fam(model, inputs):
     target.backward(torch.ones(target.shape).cuda())
     fam = torch.abs(inputs.grad)
     fam = torch.max(fam, dim=1, keepdim=True)[0]
+    print(fam.shape)
     return fam
 
 
@@ -96,6 +97,7 @@ def cal_normfam(model, inputs):
     for i in range(len(fam)):
         fam[i] -= torch.min(fam[i])
         fam[i] /= torch.max(fam[i])
+    print(fam.shape)
     return fam
 
 
