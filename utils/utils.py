@@ -87,9 +87,9 @@ def cal_fam(model, inputs):
     fam = torch.max(fam, dim=1, keepdim=True)[0]
     print(fam.shape)
     with open('batchfamtrain.npy', 'wb') as f:
-        np.save(f, fam)
+        np.save(f, fam.cpu())
     with open('famtrain.npy', 'wb') as f:
-        np.save(f, fam[0])
+        np.save(f, fam[0].cpu())
     return fam
 
 
@@ -103,9 +103,9 @@ def cal_normfam(model, inputs):
         fam[i] /= torch.max(fam[i])
     print(fam.shape)
     with open('batchfamAVG.npy', 'wb') as f:
-        np.save(f, fam)
+        np.save(f, fam.cpu())
     with open('famavg.npy', 'wb') as f:
-        np.save(f, fam[0])
+        np.save(f, fam[0].cpu())
     return fam
 
 
