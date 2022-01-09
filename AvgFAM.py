@@ -24,6 +24,8 @@ def gen_heatmap(image, mask):
     heatmap = heatmap[..., ::-1]
 
     fam = heatmap + np.float32(image)
+    with open('famfam.npy', 'wb') as f:
+        np.save(f, fam.cpu())
     return norm_image(fam), (heatmap * 255).astype(np.uint8)
 
 
