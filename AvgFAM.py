@@ -25,7 +25,7 @@ def gen_heatmap(image, mask):
 
     fam = heatmap + np.float32(image)
     with open('famfam.npy', 'wb') as f:
-        np.save(f, fam.cpu())
+        np.save(f, fam)
     return norm_image(fam), (heatmap * 255).astype(np.uint8)
 
 
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     size = (3, 3)
     for i in range(4):
         with open(f'fam{i}.npy', 'wb') as f:
-            np.save(f, fam.cpu())
+            np.save(f, fam)
         plt.figure(dpi=400)
         ind = 0
         for x, y in Dict.items():
