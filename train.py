@@ -252,4 +252,4 @@ if __name__ == "__main__":
                         torch.save(optim.state_dict(), "./models/" + upper+"_"+modelname+"_optim_batch_"+str(batchind))
 
                 print("-------------------------------------------")
-        e += 1
+       # e += 1
