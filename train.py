@@ -1,4 +1,4 @@
-import torch
+# import torch
 from utils.utils import data_prefetcher_two, cal_fam, setup_seed, calRes
 from pretrainedmodels import xception
 import utils.datasets_profiles as dp
@@ -163,63 +163,63 @@ if __name__ == "__main__":
     sumcnt = 0
     sumloss = 0.
     while True:
-        prefetcher = data_prefetcher_two(traindataloaderR, traindataloaderF)
+#         prefetcher = data_prefetcher_two(traindataloaderR, traindataloaderF)
 
-        data, y_true = prefetcher.next()
+#         data, y_true = prefetcher.next()
 
-        while data is not None and batchind < args.max_batch:
-            stime = time.time()
-            sumcnt += len(data)
+#         while data is not None and batchind < args.max_batch:
+#             stime = time.time()
+#             sumcnt += len(data)
 
-            ''' ↓ the implementation of RFM ↓ '''
-            model.eval()
-            mask = cal_fam(model, data)
-            imgmask = torch.ones_like(mask)
-            imgh = imgw = 224
+#             ''' ↓ the implementation of RFM ↓ '''
+#             model.eval()
+#             mask = cal_fam(model, data)
+#             imgmask = torch.ones_like(mask)
+#             imgh = imgw = 224
 
-            for i in range(len(mask)):
-                maxind = np.argsort(mask[i].cpu().numpy().flatten())[::-1]
-                pointcnt = 0
-                for pointind in maxind:
-                    pointx = pointind//imgw
-                    pointy = pointind % imgw
+#             for i in range(len(mask)):
+#                 maxind = np.argsort(mask[i].cpu().numpy().flatten())[::-1]
+#                 pointcnt = 0
+#                 for pointind in maxind:
+#                     pointx = pointind//imgw
+#                     pointy = pointind % imgw
 
-                    if imgmask[i][0][pointx][pointy] == 1:
+#                     if imgmask[i][0][pointx][pointy] == 1:
 
-                        maskh = random.randint(1, args.eH)
-                        maskw = random.randint(1, args.eW)
+#                         maskh = random.randint(1, args.eH)
+#                         maskw = random.randint(1, args.eW)
 
-                        sh = random.randint(1, maskh)
-                        sw = random.randint(1, maskw)
+#                         sh = random.randint(1, maskh)
+#                         sw = random.randint(1, maskw)
 
-                        top = max(pointx-sh, 0)
-                        bot = min(pointx+(maskh-sh), imgh)
-                        lef = max(pointy-sw, 0)
-                        rig = min(pointy+(maskw-sw), imgw)
+#                         top = max(pointx-sh, 0)
+#                         bot = min(pointx+(maskh-sh), imgh)
+#                         lef = max(pointy-sw, 0)
+#                         rig = min(pointy+(maskw-sw), imgw)
 
-                        imgmask[i][:, top:bot, lef:rig] = torch.zeros_like(imgmask[i][:, top:bot, lef:rig])
+#                         imgmask[i][:, top:bot, lef:rig] = torch.zeros_like(imgmask[i][:, top:bot, lef:rig])
 
-                        pointcnt += 1
-                        if pointcnt >= 3:
-                            break
+#                         pointcnt += 1
+#                         if pointcnt >= 3:
+#                             break
 
-            data = imgmask * data + (1-imgmask) * (torch.rand_like(data)*2-1.)
-            ''' ↑ the implementation of RFM ↑ '''
+#             data = imgmask * data + (1-imgmask) * (torch.rand_like(data)*2-1.)
+#             ''' ↑ the implementation of RFM ↑ '''
 
-            model.train()
-            y_pred = model.forward(data)
-            loss = lossfunc(y_pred, y_true)
+#             model.train()
+#             y_pred = model.forward(data)
+#             loss = lossfunc(y_pred, y_true)
 
-            flood = (loss-0.04).abs() + 0.04
-            sumloss += loss.detach()*len(data)
-            data, y_true = prefetcher.next()
+#             flood = (loss-0.04).abs() + 0.04
+#             sumloss += loss.detach()*len(data)
+#             data, y_true = prefetcher.next()
 
-            optim.zero_grad()
-            flood.backward()
-            optim.step()
+#             optim.zero_grad()
+#             flood.backward()
+#             optim.step()
 
-            batchind += 1
-            print("Train %06d loss:%.5f avgloss:%.5f lr:%.6f time:%.4f" % (batchind, loss, sumloss/sumcnt, optim.param_groups[0]["lr"], time.time()-stime), end="\r")
+#             batchind += 1
+#             print("Train %06d loss:%.5f avgloss:%.5f lr:%.6f time:%.4f" % (batchind, loss, sumloss/sumcnt, optim.param_groups[0]["lr"], time.time()-stime), end="\r")
 
             if batchind % args.logbatch == 0:
                 print()
