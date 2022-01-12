@@ -42,6 +42,7 @@ args = parser.parse_args()
 
 modelname = args.modelname
 upper = args.upper
+args.resume_model = "./models/baseline.pth"
 
 
 def Eval(model, lossfunc, dtloader):
