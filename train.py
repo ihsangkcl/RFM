@@ -223,7 +223,7 @@ if __name__ == "__main__":
 
             if batchind % args.logbatch == 0:
                 print()
-                Log("epoch:%03d batch:%06d loss:%.5f avgloss:%.5f" % (e, batchind, loss, sumloss/sumcnt))
+               # Log("epoch:%03d batch:%06d loss:%.5f avgloss:%.5f" % (e, batchind, loss, sumloss/sumcnt))
 
                 loss_valid, y_true_valid, y_pred_valid = Eval(model, lossfunc, validdataloader)
                 ap, acc, AUC, TPR_2, TPR_3, TPR_4 = calRes(y_true_valid, y_pred_valid)
