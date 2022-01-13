@@ -98,7 +98,7 @@ if __name__ == "__main__":
     optim = Adam(model.parameters(), lr=args.lr, weight_decay=0)
 
     if args.resume_model is not None:
-        model.load_state_dict(torch.load(args.resume_model))
+        model.load_state_dict(torch.load(args.resume_model),map_location='cuda:0')
     if args.resume_optim is not None:
         optim.load_state_dict(torch.load(args.resume_optim))
 
