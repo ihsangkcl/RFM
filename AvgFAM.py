@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     model.load_state_dict(torch.load(resume_model, map_location={'cuda:0': cuda_device, 'cuda:1': cuda_device, 'cuda:2': cuda_device, 'cuda:3': cuda_device}))
 
-    dataset = dp.DFFD()
+    dataset = dp.Stylespace()
     testset, dffddir = dataset.getsetlist(False, 2)
 
     testdataloaders = []
