@@ -9,7 +9,8 @@ import cv2
 import utils.datasets_profiles as dp
 
 modelname = "xception"
-resume_model = "./models/xbase_xception_model_batch_12000"
+#resume_model = "./models/xbase_xception_model_batch_12000"
+resume_model = "./models/dffd_xception_model-RFM_"
 
 aug = torchvision.transforms.Compose([
     torchvision.transforms.Resize(256),
