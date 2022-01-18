@@ -109,7 +109,7 @@ class Stylespace(selfdataset):
         super(selfdataset, self).__init__()
         self.folder_path = folder_path
         self.R_dir = ["real"]
-        self.F_dir = ["(2, 175, -15)", "(2, 175, 15)", "(6, 501, -15)", "(6, 501, 15)", "(9, 6, -15)", "(9, 6, 15)", "(15, 45, -15)", "(15, 45, 15)", "original_images"]
+        self.F_dir = ["(2, 175, -15)", "(2, 175, 15)", "(6, 501, -15)", "(6, 501, 15)", "(9, 6, -15)", "(9, 6, 15)", "(15, 45, -15)", "(15, 45, 15)", "(12, 84, 15)", "(12, 84, -15)" "original_images"]
         self.trainpath = lambda path, file: os.path.join(self.folder_path, file, "")
         self.validpath = lambda path, file: os.path.join(self.folder_path, file, "")
         self.testpath = lambda path, file: os.path.join(self.folder_path, file, "")
