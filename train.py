@@ -44,8 +44,8 @@ modelname = args.modelname
 upper = args.upper
 #args.resume_model = "./models/baseline.pth"
 #args.resume_model = "./models/xbase_xception_model_batch_12000"
-#args.resume_model = "./models/dffd_xception_model-RFM_"
-args.resume_model = "./models/dffd_xception_model-baseline_"
+args.resume_model = "./models/dffd_xception_model-RFM_"
+#args.resume_model = "./models/dffd_xception_model-baseline_"
 
 
 def Eval(model, lossfunc, dtloader):
