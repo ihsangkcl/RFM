@@ -85,11 +85,11 @@ def cal_fam(model, inputs):
     target.backward(torch.ones(target.shape).cuda())
     fam = torch.abs(inputs.grad)
     fam = torch.max(fam, dim=1, keepdim=True)[0]
-    print(fam.shape)
-    with open('batchfamtrain.npy', 'wb') as f:
-        np.save(f, fam.cpu())
-    with open('famtrain.npy', 'wb') as f:
-        np.save(f, fam[0].cpu())
+#     print(fam.shape)
+#     with open('batchfamtrain.npy', 'wb') as f:
+#         np.save(f, fam.cpu())
+#     with open('famtrain.npy', 'wb') as f:
+#         np.save(f, fam[0].cpu())
     return fam
 
 
