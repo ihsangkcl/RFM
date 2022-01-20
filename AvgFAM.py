@@ -123,4 +123,5 @@ if __name__ == "__main__":
             plt.xticks(())
             plt.yticks(())
             plt.title(x)
+        plt.tight_layout()
         plt.savefig("./avg_FAM_results/"+str(i)+".png")
