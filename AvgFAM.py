@@ -10,7 +10,8 @@ import utils.datasets_profiles as dp
 
 modelname = "xception"
 #resume_model = "./models/xbase_xception_model_batch_12000"
-resume_model = "./models/dffd_xception_model-baseline_"
+resume_model = "./models/dffd_xception_model-RFM_"
+#resume_model = "./models/dffd_xception_model-baseline_"
 
 aug = torchvision.transforms.Compose([
     torchvision.transforms.Resize(256),
@@ -104,7 +105,7 @@ if __name__ == "__main__":
         Dict[dffddir[ind]] = [sum_data, sum_map, cam, heatmap]
         ind += 1
 
-    size = (3, 3)
+    size = (5, 4)
     for i in range(4):
         with open(f'fam{i}.npy', 'wb') as f:
             np.save(f, fam)
