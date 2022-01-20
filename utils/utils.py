@@ -101,11 +101,11 @@ def cal_normfam(model, inputs):
     for i in range(len(fam)):
         fam[i] -= torch.min(fam[i])
         fam[i] /= torch.max(fam[i])
-    print(fam.shape)
-    with open('batchfamAVG.npy', 'wb') as f:
-        np.save(f, fam.cpu())
-    with open('famavg.npy', 'wb') as f:
-        np.save(f, fam[0].cpu())
+#     print(fam.shape)
+#     with open('batchfamAVG.npy', 'wb') as f:
+#         np.save(f, fam.cpu())
+#     with open('famavg.npy', 'wb') as f:
+#         np.save(f, fam[0].cpu())
     return fam
 
 
