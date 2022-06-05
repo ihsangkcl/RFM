@@ -104,12 +104,12 @@ class DFFD(selfdataset):
         self.testpath = lambda path, file: os.path.join(self.folder_path, file, "test")
 
 
-class DFFD_erased(selfdataset):
-    def __init__(self, folder_path="./FakeImgDatasets/"):
+class Stylespace(selfdataset):
+    def __init__(self, folder_path="./FakeImgDatasets/datasets/"):
         super(selfdataset, self).__init__()
         self.folder_path = folder_path
-        self.R_dir = ["ffhq"]
-        self.F_dir = ["stylegan_ffhq"]
+        self.R_dir = ["real"]
+        self.F_dir = ["fake"]
         self.trainpath = lambda path, file: os.path.join(self.folder_path, file, "train")
         self.validpath = lambda path, file: os.path.join(self.folder_path, file, "validation")
         self.testpath = lambda path, file: os.path.join(self.folder_path, file, "test")
