@@ -243,8 +243,8 @@ if __name__ == "__main__":
                     sumTPR_4 += TPR_4
                     
                     np.savetxt('./logs/fprs'+TestsetName[i]+'.out', fprs, delimiter=',')
-                    np.savetxt('./logs/tprs'+TestsetName[i]+'.out', fprs, delimiter=',')
-                    np.savetxt('./logs/fprs'+TestsetName[i]+'.out', fprs, delimiter=',')
+                    np.savetxt('./logs/tprs'+TestsetName[i]+'.out', tprs, delimiter=',')
+                    #np.savetxt('./logs/fprs'+TestsetName[i]+'.out', fprs, delimiter=',')
                    
                     #sumFPRS += fprs
                     #sumTPRS += tprs
