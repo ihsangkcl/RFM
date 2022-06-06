@@ -242,11 +242,11 @@ if __name__ == "__main__":
                     sumTPR_3 += TPR_3
                     sumTPR_4 += TPR_4
                     f = open("./logs/"+upper+"_"+modelname+TestsetName[i]+".txt", "a")
-                    f.write(fprs)
+                    f.write(fprs.tostring())
                     f.write("\n")
-                    f.write(tprs)
+                    f.write(tprs.tostring())
                     f.write("\n")
-                    f.write(ths)
+                    f.write(ths.tostring())
                     f.write("\n")
                     f.close()
                     #sumFPRS += fprs
