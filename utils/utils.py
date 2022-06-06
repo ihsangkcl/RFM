@@ -140,4 +140,4 @@ def calRes(y_true_all, y_pred_all):
     TPR_4 = tprs[ind-1]
 
     ap = average_precision_score(y_true_all, y_pred_all)
-    return ap, acc, auc(fprs, tprs), TPR_2, TPR_3, TPR_4
+    return ap, acc, auc(fprs, tprs), TPR_2, TPR_3, TPR_4, fprs, tprs, ths

@@ -229,22 +229,32 @@ if __name__ == "__main__":
                # Log("epoch:%03d batch:%06d loss:%.5f avgloss:%.5f" % (e, batchind, loss, sumloss/sumcnt))
 
                 loss_valid, y_true_valid, y_pred_valid = Eval(model, lossfunc, validdataloader)
-                ap, acc, AUC, TPR_2, TPR_3, TPR_4 = calRes(y_true_valid, y_pred_valid)
+                ap, acc, AUC, TPR_2, TPR_3, TPR_4, fprs, tprs ,ths = calRes(y_true_valid, y_pred_valid)
                 Log("AUC:%.6f TPR_2:%.6f TPR_3:%.6f TPR_4:%.6f %s" % (AUC, TPR_2, TPR_3, TPR_4, "validset"))
 
                 loss_r, y_true_r, y_pred_r = Eval(model, lossfunc, testdataloaderR)
-                sumAUC = sumTPR_2 = sumTPR_3 = sumTPR_4 = 0
+                sumAUC = sumTPR_2 = sumTPR_3 = sumTPR_4 = sumFPRS = sumTPRS = sumTHS = 0
                 for i, tmptestdataloader in enumerate(testdataloaderList):
                     loss_f, y_true_f, y_pred_f = Eval(model, lossfunc, tmptestdataloader)
-                    ap, acc, AUC, TPR_2, TPR_3, TPR_4 = calRes(torch.cat((y_true_r, y_true_f)), torch.cat((y_pred_r, y_pred_f)))
+                    ap, acc, AUC, TPR_2, TPR_3, TPR_4, fprs, tprs, ths = calRes(torch.cat((y_true_r, y_true_f)), torch.cat((y_pred_r, y_pred_f)))
                     sumAUC += AUC
                     sumTPR_2 += TPR_2
                     sumTPR_3 += TPR_3
                     sumTPR_4 += TPR_4
+                    sumFPRS += fprs
+                    sumTPRS += tprs
+                    sumTHS += ths
                     Log("AUC:%.6f TPR_2:%.6f TPR_3:%.6f TPR_4:%.6f %s" % (AUC, TPR_2, TPR_3, TPR_4, TestsetName[i]))
                 if len(testdataloaderList) > 1:
                     Log("AUC:%.6f TPR_2:%.6f TPR_3:%.6f TPR_4:%.6f Test" %
                         (sumAUC/len(testdataloaderList), sumTPR_2/len(testdataloaderList), sumTPR_3/len(testdataloaderList), sumTPR_4/len(testdataloaderList)))
+                        
+                    f = open("./logs/"+upper+"_"+modelname+".txt", "a")
+                    f.write(sumFPRS/len(testdataloaderList)+"\n")
+                    f.write(sumTPRS/len(testdataloaderList)+"\n")
+                    f.write(sumTHS/len(testdataloaderList)+"\n")
+                    f.close()
+                    
                     TPR_4 = (sumTPR_4)/len(testdataloaderList)
 
                 if batchind % args.savebatch == 0 or TPR_4 > MAX_TPR_4:
