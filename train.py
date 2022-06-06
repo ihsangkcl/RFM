@@ -241,19 +241,20 @@ if __name__ == "__main__":
                     sumTPR_2 += TPR_2
                     sumTPR_3 += TPR_3
                     sumTPR_4 += TPR_4
-                    sumFPRS += fprs
-                    sumTPRS += tprs
-                    sumTHS += ths
+                    f = open("./logs/"+upper+"_"+modelname+TestsetName[i]+".txt", "a")
+                    f.write(fprs+"\n")
+                    f.write(tprs+"\n")
+                    f.write(ths+"\n")
+                    f.close()
+                    #sumFPRS += fprs
+                    #sumTPRS += tprs
+                    #sumTHS += ths
                     Log("AUC:%.6f TPR_2:%.6f TPR_3:%.6f TPR_4:%.6f %s" % (AUC, TPR_2, TPR_3, TPR_4, TestsetName[i]))
                 if len(testdataloaderList) > 1:
                     Log("AUC:%.6f TPR_2:%.6f TPR_3:%.6f TPR_4:%.6f Test" %
                         (sumAUC/len(testdataloaderList), sumTPR_2/len(testdataloaderList), sumTPR_3/len(testdataloaderList), sumTPR_4/len(testdataloaderList)))
                         
-                    f = open("./logs/"+upper+"_"+modelname+".txt", "a")
-                    f.write(sumFPRS/len(testdataloaderList)+"\n")
-                    f.write(sumTPRS/len(testdataloaderList)+"\n")
-                    f.write(sumTHS/len(testdataloaderList)+"\n")
-                    f.close()
+                    
                     
                     TPR_4 = (sumTPR_4)/len(testdataloaderList)
 
