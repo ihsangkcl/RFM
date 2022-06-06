@@ -108,7 +108,7 @@ class Stylespace(selfdataset):
     def __init__(self, folder_path="./FakeImgDatasets/datasets/"):
         super(selfdataset, self).__init__()
         self.folder_path = folder_path
-        self.R_dir = ["real"]
+        self.R_dir = ["real2"]
         self.F_dir = ["(2, 175, -15)", "(2, 175, 15)", "(5, 5, -15)", "(5, 5, 15)","(6, 501, -15)", "(6, 501, 15)", "(8, 17, -15)", "(8, 17, 15)", "(9, 6, -15)", "(9, 6, 15)", "(15, 45, -15)", "(15, 45, 15)", "(12, 84, 15)", "(12, 84, -15)", "(12, 381, -15)", "(12, 381, 15)"]
         #self.F_dir = ["(12, 23, -40)", "(12, 23, -25)", "(12, 23, -10)", "(12, 23, 10)", "(12, 23, 25)", "(12, 23, 40)"]
         #self.F_dir = ["fake"]
