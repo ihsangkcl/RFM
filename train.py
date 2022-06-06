@@ -241,14 +241,11 @@ if __name__ == "__main__":
                     sumTPR_2 += TPR_2
                     sumTPR_3 += TPR_3
                     sumTPR_4 += TPR_4
-                    f = open("./logs/"+upper+"_"+modelname+TestsetName[i]+".txt", "a")
-                    f.write(fprs.tostring())
-                    f.write("\n")
-                    f.write(tprs.tostring())
-                    f.write("\n")
-                    f.write(ths.tostring())
-                    f.write("\n")
-                    f.close()
+                    
+                    np.savetxt('./logs/fprs'+TestsetName[i]+'.out', fprs, delimiter=',')
+                    np.savetxt('./logs/tprs'+TestsetName[i]+'.out', fprs, delimiter=',')
+                    np.savetxt('./logs/fprs'+TestsetName[i]+'.out', fprs, delimiter=',')
+                   
                     #sumFPRS += fprs
                     #sumTPRS += tprs
                     #sumTHS += ths
